@@ -257,7 +257,7 @@ namespace Black_Desert
 
         private void rwtxt(string Txt,string filename= "log.txt")
         {
-            if (dbug) { return; }
+            if (!dbug) { return; }
             if (!File.Exists(Application.StartupPath + "\\"+ filename))
             {
                 FileStream fs1 = new FileStream(Application.StartupPath+"\\"+ filename, FileMode.Create, FileAccess.Write);//创建写入文件 

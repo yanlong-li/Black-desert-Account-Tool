@@ -26,6 +26,9 @@ namespace Black_Desert
         //附加url参数
         private string tmpurl="";
 
+
+        private bool dbug = false;
+
         //帮助窗体
         public static help help;
 
@@ -246,6 +249,7 @@ namespace Black_Desert
 
         private void rwtxt(string Txt,string filename= "log.txt")
         {
+            if (dbug) { return; }
             if (!File.Exists(Application.StartupPath + "\\"+ filename))
             {
                 FileStream fs1 = new FileStream(Application.StartupPath+"\\"+ filename, FileMode.Create, FileAccess.Write);//创建写入文件 
@@ -350,11 +354,16 @@ namespace Black_Desert
 
         private void button6_Click(object sender, EventArgs e)
         {
-            foreach(Cookie cck in cc.GetCookies(new System.Uri("https://sso.woniu.com/login")))
+            if (dbug)
             {
-                listBox1.Items.Add(cck.Name+":"+cck.Value);
+                dbug = false;
+                MessageBox.Show("调试模式已关闭");
             }
-            listBox1.SelectedIndex = listBox1.Items.Count - 1;
+            else
+            {
+                dbug = true;
+                MessageBox.Show("调试模式已开启");
+            }
         }
 
 

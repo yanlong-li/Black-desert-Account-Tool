@@ -196,7 +196,9 @@ namespace Black_Desert
         /// <returns></returns>
         public string SendDataByGET(string Url, string postDataStr, ref CookieContainer cookie)
         {
+            try { 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url + (postDataStr == "" ? "" : "?") + postDataStr);
+           
             if (cookie.Count == 0)
             {
                 request.CookieContainer = new CookieContainer();
@@ -243,7 +245,13 @@ namespace Black_Desert
                 listBox1.SelectedIndex = listBox1.Items.Count - 1;
                 return exp.Message;
             }
-            
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show(exp.Message);
+                return "URL错误";
+            }
+
         }
         #endregion
 
@@ -354,6 +362,7 @@ namespace Black_Desert
 
         private void button6_Click(object sender, EventArgs e)
         {
+            //MessageBox.Show("调试模式已关闭");
             if (dbug)
             {
                 dbug = false;
@@ -379,7 +388,7 @@ namespace Black_Desert
         {
             // 操作代码
             string content;
-
+            if (Addressbar.Text.Length <= 3) { return; }
             //获取get返回内容
             content = SendDataByGET(Addressbar.Text, "", ref cc);
             //加载验证码

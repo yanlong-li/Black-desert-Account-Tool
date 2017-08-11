@@ -36,6 +36,9 @@ namespace Black_Desert
             listBox1.Items.Add(startopentext.ToString());
             listBox1.Items.Add("请选择账号文件");
             listBox1.SelectedIndex = listBox1.Items.Count - 1;
+
+            //Form form2 = new Form2();
+            //form2.Show();
         }
 
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)

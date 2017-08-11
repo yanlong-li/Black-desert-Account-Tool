@@ -26,6 +26,9 @@ namespace Black_Desert
         //附加url参数
         private string tmpurl="";
 
+        //帮助窗体
+        public static help help;
+
         //半自动状态
         private bool auto = false;
 
@@ -760,6 +763,20 @@ namespace Black_Desert
         private void button12_Click(object sender, EventArgs e)
         {
             auto1();
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            Form f = Application.OpenForms["help"];  //查找是否打开过Form1窗体  
+            if (f == null)  //没打开过  
+            {
+                help fa = new help();
+                fa.Show();   //重新new一个Show出来  
+            }
+            else
+            {
+                f.Focus();   //打开过就让其获得焦点  
+            }
         }
     }
 

@@ -69,9 +69,6 @@
             this.button10 = new System.Windows.Forms.Button();
             this.checkBoxNickName = new System.Windows.Forms.CheckBox();
             this.prefixNickName = new System.Windows.Forms.TextBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.button11 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.inputusername = new System.Windows.Forms.TextBox();
@@ -80,11 +77,17 @@
             this.label11 = new System.Windows.Forms.Label();
             this.button12 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
+            this.checkBoxruhui = new System.Windows.Forms.CheckBox();
+            this.checkBoxqiandao = new System.Windows.Forms.CheckBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button14 = new System.Windows.Forms.Button();
+            this.button15 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -126,7 +129,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(12, 133);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(476, 418);
+            this.dataGridView1.Size = new System.Drawing.Size(476, 486);
             this.dataGridView1.TabIndex = 3;
             // 
             // id
@@ -197,9 +200,9 @@
             // button4
             // 
             this.button4.Font = new System.Drawing.Font("宋体", 13F);
-            this.button4.Location = new System.Drawing.Point(1058, 139);
+            this.button4.Location = new System.Drawing.Point(225, 23);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(118, 36);
+            this.button4.Size = new System.Drawing.Size(118, 39);
             this.button4.TabIndex = 6;
             this.button4.Text = "登陆";
             this.button4.UseVisualStyleBackColor = true;
@@ -208,7 +211,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(492, 113);
+            this.label1.Location = new System.Drawing.Point(847, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 12);
             this.label1.TabIndex = 9;
@@ -217,7 +220,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(609, 113);
+            this.label2.Location = new System.Drawing.Point(846, 47);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 12);
             this.label2.TabIndex = 10;
@@ -225,7 +228,7 @@
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(542, 111);
+            this.numericUpDown1.Location = new System.Drawing.Point(905, 14);
             this.numericUpDown1.Minimum = new decimal(new int[] {
             1,
             0,
@@ -242,7 +245,7 @@
             // 
             // numericUpDown2
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(668, 111);
+            this.numericUpDown2.Location = new System.Drawing.Point(905, 45);
             this.numericUpDown2.Maximum = new decimal(new int[] {
             5000,
             0,
@@ -255,7 +258,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(735, 113);
+            this.label3.Location = new System.Drawing.Point(986, 53);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(47, 12);
             this.label3.TabIndex = 13;
@@ -263,7 +266,7 @@
             // 
             // numericUpDown3
             // 
-            this.numericUpDown3.Location = new System.Drawing.Point(859, 111);
+            this.numericUpDown3.Location = new System.Drawing.Point(1045, 16);
             this.numericUpDown3.Name = "numericUpDown3";
             this.numericUpDown3.Size = new System.Drawing.Size(61, 21);
             this.numericUpDown3.TabIndex = 14;
@@ -271,7 +274,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(788, 113);
+            this.label4.Location = new System.Drawing.Point(986, 21);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 12);
             this.label4.TabIndex = 15;
@@ -280,7 +283,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(941, 113);
+            this.label5.Location = new System.Drawing.Point(1117, 21);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(59, 12);
             this.label5.TabIndex = 16;
@@ -290,7 +293,7 @@
             // 
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 12;
-            this.listBox1.Location = new System.Drawing.Point(494, 223);
+            this.listBox1.Location = new System.Drawing.Point(505, 291);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(648, 328);
             this.listBox1.TabIndex = 17;
@@ -298,7 +301,7 @@
             // pictureBox1
             // 
             this.pictureBox1.ImageLocation = "";
-            this.pictureBox1.Location = new System.Drawing.Point(766, 141);
+            this.pictureBox1.Location = new System.Drawing.Point(641, 72);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(100, 33);
             this.pictureBox1.TabIndex = 18;
@@ -308,7 +311,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(629, 152);
+            this.label6.Location = new System.Drawing.Point(621, 122);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(41, 12);
             this.label6.TabIndex = 19;
@@ -317,26 +320,26 @@
             // 
             // code
             // 
-            this.code.Location = new System.Drawing.Point(678, 149);
+            this.code.Location = new System.Drawing.Point(668, 119);
             this.code.Name = "code";
-            this.code.Size = new System.Drawing.Size(73, 21);
+            this.code.Size = new System.Drawing.Size(84, 21);
             this.code.TabIndex = 20;
             this.code.KeyDown += new System.Windows.Forms.KeyEventHandler(this.code_KeyDown);
             // 
             // button5
             // 
             this.button5.Font = new System.Drawing.Font("宋体", 13F);
-            this.button5.Location = new System.Drawing.Point(494, 141);
+            this.button5.Location = new System.Drawing.Point(494, 107);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(118, 33);
             this.button5.TabIndex = 21;
-            this.button5.Text = "获取验证码";
+            this.button5.Text = "刷新验证码";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(845, 41);
+            this.button6.Location = new System.Drawing.Point(1119, 107);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(75, 23);
             this.button6.TabIndex = 22;
@@ -346,7 +349,7 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(926, 14);
+            this.button7.Location = new System.Drawing.Point(1071, 298);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(75, 23);
             this.button7.TabIndex = 23;
@@ -356,14 +359,14 @@
             // 
             // Addressbar
             // 
-            this.Addressbar.Location = new System.Drawing.Point(494, 14);
+            this.Addressbar.Location = new System.Drawing.Point(769, 140);
             this.Addressbar.Name = "Addressbar";
-            this.Addressbar.Size = new System.Drawing.Size(347, 21);
+            this.Addressbar.Size = new System.Drawing.Size(337, 21);
             this.Addressbar.TabIndex = 24;
             // 
             // AddressbarGet
             // 
-            this.AddressbarGet.Location = new System.Drawing.Point(845, 14);
+            this.AddressbarGet.Location = new System.Drawing.Point(1119, 138);
             this.AddressbarGet.Name = "AddressbarGet";
             this.AddressbarGet.Size = new System.Drawing.Size(75, 23);
             this.AddressbarGet.TabIndex = 25;
@@ -373,7 +376,7 @@
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(654, 191);
+            this.button8.Location = new System.Drawing.Point(349, 21);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(75, 23);
             this.button8.TabIndex = 26;
@@ -383,7 +386,7 @@
             // 
             // guild_id
             // 
-            this.guild_id.Location = new System.Drawing.Point(551, 191);
+            this.guild_id.Location = new System.Drawing.Point(668, 12);
             this.guild_id.Name = "guild_id";
             this.guild_id.Size = new System.Drawing.Size(73, 21);
             this.guild_id.TabIndex = 27;
@@ -391,7 +394,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(504, 194);
+            this.label7.Location = new System.Drawing.Point(621, 15);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(41, 12);
             this.label7.TabIndex = 28;
@@ -399,7 +402,7 @@
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(755, 191);
+            this.button9.Location = new System.Drawing.Point(349, 50);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(75, 23);
             this.button9.TabIndex = 29;
@@ -409,7 +412,7 @@
             // 
             // nickname
             // 
-            this.nickname.Location = new System.Drawing.Point(905, 191);
+            this.nickname.Location = new System.Drawing.Point(118, 74);
             this.nickname.Name = "nickname";
             this.nickname.Size = new System.Drawing.Size(73, 21);
             this.nickname.TabIndex = 31;
@@ -418,7 +421,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(843, 196);
+            this.label8.Location = new System.Drawing.Point(35, 76);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(53, 12);
             this.label8.TabIndex = 30;
@@ -426,7 +429,7 @@
             // 
             // button10
             // 
-            this.button10.Location = new System.Drawing.Point(996, 191);
+            this.button10.Location = new System.Drawing.Point(349, 77);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(75, 23);
             this.button10.TabIndex = 32;
@@ -437,7 +440,7 @@
             // checkBoxNickName
             // 
             this.checkBoxNickName.AutoSize = true;
-            this.checkBoxNickName.Location = new System.Drawing.Point(755, 70);
+            this.checkBoxNickName.Location = new System.Drawing.Point(769, 74);
             this.checkBoxNickName.Name = "checkBoxNickName";
             this.checkBoxNickName.Size = new System.Drawing.Size(108, 16);
             this.checkBoxNickName.TabIndex = 33;
@@ -446,59 +449,26 @@
             // 
             // prefixNickName
             // 
-            this.prefixNickName.Location = new System.Drawing.Point(869, 68);
+            this.prefixNickName.Location = new System.Drawing.Point(905, 72);
             this.prefixNickName.Name = "prefixNickName";
             this.prefixNickName.Size = new System.Drawing.Size(73, 21);
             this.prefixNickName.TabIndex = 34;
             // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(508, 69);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(71, 16);
-            this.radioButton1.TabIndex = 35;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "自动入会";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(591, 69);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(71, 16);
-            this.radioButton2.TabIndex = 36;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "自动签到";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // radioButton3
-            // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(668, 69);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(59, 16);
-            this.radioButton3.TabIndex = 37;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "仅登陆";
-            this.radioButton3.UseVisualStyleBackColor = true;
-            // 
             // button11
             // 
             this.button11.Font = new System.Drawing.Font("宋体", 13F);
-            this.button11.Location = new System.Drawing.Point(1024, 29);
+            this.button11.Location = new System.Drawing.Point(494, 6);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(118, 60);
             this.button11.TabIndex = 38;
-            this.button11.Text = "半自动登陆";
+            this.button11.Text = "半自动操作";
             this.button11.UseVisualStyleBackColor = true;
             this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(1017, 102);
+            this.label9.Location = new System.Drawing.Point(503, 81);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(125, 12);
             this.label9.TabIndex = 39;
@@ -506,14 +476,14 @@
             // 
             // inputusername
             // 
-            this.inputusername.Location = new System.Drawing.Point(905, 138);
+            this.inputusername.Location = new System.Drawing.Point(85, 20);
             this.inputusername.Name = "inputusername";
             this.inputusername.Size = new System.Drawing.Size(134, 21);
             this.inputusername.TabIndex = 40;
             // 
             // inputpassword
             // 
-            this.inputpassword.Location = new System.Drawing.Point(905, 164);
+            this.inputpassword.Location = new System.Drawing.Point(85, 47);
             this.inputpassword.Name = "inputpassword";
             this.inputpassword.Size = new System.Drawing.Size(134, 21);
             this.inputpassword.TabIndex = 41;
@@ -521,26 +491,26 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(885, 141);
+            this.label10.Location = new System.Drawing.Point(35, 23);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(11, 12);
+            this.label10.Size = new System.Drawing.Size(29, 12);
             this.label10.TabIndex = 42;
-            this.label10.Text = "U";
+            this.label10.Text = "账号";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(885, 163);
+            this.label11.Location = new System.Drawing.Point(35, 50);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(11, 12);
+            this.label11.Size = new System.Drawing.Size(29, 12);
             this.label11.TabIndex = 43;
-            this.label11.Text = "P";
+            this.label11.Text = "密码";
             // 
             // button12
             // 
-            this.button12.Location = new System.Drawing.Point(948, 66);
+            this.button12.Location = new System.Drawing.Point(618, 39);
             this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(70, 23);
+            this.button12.Size = new System.Drawing.Size(63, 23);
             this.button12.TabIndex = 44;
             this.button12.Text = "下个账号";
             this.button12.UseVisualStyleBackColor = true;
@@ -548,7 +518,7 @@
             // 
             // button13
             // 
-            this.button13.Location = new System.Drawing.Point(926, 43);
+            this.button13.Location = new System.Drawing.Point(1119, 76);
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(75, 23);
             this.button13.TabIndex = 45;
@@ -556,31 +526,84 @@
             this.button13.UseVisualStyleBackColor = true;
             this.button13.Click += new System.EventHandler(this.button13_Click);
             // 
+            // checkBoxruhui
+            // 
+            this.checkBoxruhui.AutoSize = true;
+            this.checkBoxruhui.Location = new System.Drawing.Point(769, 42);
+            this.checkBoxruhui.Name = "checkBoxruhui";
+            this.checkBoxruhui.Size = new System.Drawing.Size(72, 16);
+            this.checkBoxruhui.TabIndex = 46;
+            this.checkBoxruhui.Text = "自动入会";
+            this.checkBoxruhui.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxqiandao
+            // 
+            this.checkBoxqiandao.AutoSize = true;
+            this.checkBoxqiandao.Location = new System.Drawing.Point(769, 12);
+            this.checkBoxqiandao.Name = "checkBoxqiandao";
+            this.checkBoxqiandao.Size = new System.Drawing.Size(72, 16);
+            this.checkBoxqiandao.TabIndex = 47;
+            this.checkBoxqiandao.Text = "自动签到";
+            this.checkBoxqiandao.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.button14);
+            this.groupBox1.Controls.Add(this.inputusername);
+            this.groupBox1.Controls.Add(this.inputpassword);
+            this.groupBox1.Controls.Add(this.nickname);
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.button10);
+            this.groupBox1.Controls.Add(this.button8);
+            this.groupBox1.Controls.Add(this.button9);
+            this.groupBox1.Controls.Add(this.button4);
+            this.groupBox1.Location = new System.Drawing.Point(505, 165);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(648, 113);
+            this.groupBox1.TabIndex = 48;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "手动区域";
+            // 
+            // button14
+            // 
+            this.button14.Font = new System.Drawing.Font("宋体", 13F);
+            this.button14.Location = new System.Drawing.Point(225, 68);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(118, 39);
+            this.button14.TabIndex = 44;
+            this.button14.Text = "退出";
+            this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.button14_Click);
+            // 
+            // button15
+            // 
+            this.button15.Location = new System.Drawing.Point(689, 39);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(63, 23);
+            this.button15.TabIndex = 49;
+            this.button15.Text = "上个账号";
+            this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.button15_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1188, 592);
+            this.ClientSize = new System.Drawing.Size(1276, 624);
+            this.Controls.Add(this.button15);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.checkBoxqiandao);
+            this.Controls.Add(this.checkBoxruhui);
             this.Controls.Add(this.button13);
             this.Controls.Add(this.button12);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.inputpassword);
-            this.Controls.Add(this.inputusername);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.button11);
-            this.Controls.Add(this.radioButton3);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.prefixNickName);
             this.Controls.Add(this.checkBoxNickName);
-            this.Controls.Add(this.button10);
-            this.Controls.Add(this.nickname);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.button9);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.guild_id);
-            this.Controls.Add(this.button8);
             this.Controls.Add(this.AddressbarGet);
             this.Controls.Add(this.Addressbar);
             this.Controls.Add(this.button7);
@@ -598,7 +621,6 @@
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.dataGridView1);
@@ -608,11 +630,14 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "黑色沙漠批量小号申请加入公会 By Yanlongli";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -653,9 +678,6 @@
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.CheckBox checkBoxNickName;
         private System.Windows.Forms.TextBox prefixNickName;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
@@ -671,6 +693,11 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.CheckBox checkBoxruhui;
+        private System.Windows.Forms.CheckBox checkBoxqiandao;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button button14;
+        private System.Windows.Forms.Button button15;
     }
 }
 

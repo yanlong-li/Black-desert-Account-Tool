@@ -27,7 +27,7 @@ namespace Black_Desert
         private string tmpurl="";
 
 
-        private bool dbug = false;
+        private bool debug = false;
 
         //帮助窗体
         public static help help;
@@ -165,9 +165,11 @@ namespace Black_Desert
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
 
                 cookie.Add(response.Cookies);
+                if (debug) { 
                 foreach (Cookie ck in response.Cookies)
                 {
                     listBox1.Items.Add(ck.Name + ":" + ck.Value);
+                }
                 }
                 Stream myResponseStream = response.GetResponseStream();
             StreamReader myStreamReader = new StreamReader(myResponseStream, Encoding.GetEncoding("utf-8"));
@@ -215,11 +217,13 @@ namespace Black_Desert
             try { 
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             cookie.Add(response.Cookies);
+                    if (debug) { 
                 foreach(Cookie ck in response.Cookies)
                 {
                     listBox1.Items.Add(ck.Name+":"+ck.Value);
                 }
-            Stream myResponseStream = response.GetResponseStream();
+                    }
+                    Stream myResponseStream = response.GetResponseStream();
             StreamReader myStreamReader = new StreamReader(myResponseStream, Encoding.GetEncoding("utf-8"));
             string retString = myStreamReader.ReadToEnd();
             myStreamReader.Close();
@@ -257,7 +261,7 @@ namespace Black_Desert
 
         private void rwtxt(string Txt,string filename= "log.txt")
         {
-            if (!dbug) { return; }
+            if (!debug) { return; }
             if (!File.Exists(Application.StartupPath + "\\"+ filename))
             {
                 FileStream fs1 = new FileStream(Application.StartupPath+"\\"+ filename, FileMode.Create, FileAccess.Write);//创建写入文件 
@@ -299,14 +303,17 @@ namespace Black_Desert
             request.ContentType = "image/png;charset=UTF-8";
             try { 
 
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            cookie.Add(response.Cookies);
-            foreach (Cookie ck in response.Cookies)
-            {
-                listBox1.Items.Add(ck.Name + ":" + ck.Value);
-            }
-            Stream myResponseStream = response.GetResponseStream();
-            Image code = Image.FromStream(myResponseStream);
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                cookie.Add(response.Cookies);
+                if (debug)
+                {
+                    foreach (Cookie ck in response.Cookies)
+                    {
+                        listBox1.Items.Add(ck.Name + ":" + ck.Value);
+                    }
+                }
+                Stream myResponseStream = response.GetResponseStream();
+                Image code = Image.FromStream(myResponseStream);
                 //pictureBox1.Image = code;
                 listBox1.SelectedIndex = listBox1.Items.Count - 1;
                 return code;
@@ -363,14 +370,14 @@ namespace Black_Desert
         private void button6_Click(object sender, EventArgs e)
         {
             //MessageBox.Show("调试模式已关闭");
-            if (dbug)
+            if (debug)
             {
-                dbug = false;
+                debug = false;
                 MessageBox.Show("调试模式已关闭");
             }
             else
             {
-                dbug = true;
+                debug = true;
                 MessageBox.Show("调试模式已开启");
             }
         }
@@ -391,9 +398,6 @@ namespace Black_Desert
             if (Addressbar.Text.Length <= 3) { return; }
             //获取get返回内容
             content = SendDataByGET(Addressbar.Text, "", ref cc);
-            //加载验证码
-           // pictureBox1.Image = getImg("https://sso.woniu.com/captcha", "", ref cc);
-
 
             //调试打印返回内容
             rwtxt(content, "addressbar.html");
@@ -440,8 +444,19 @@ namespace Black_Desert
 
         private void button11_Click(object sender, EventArgs e)
         {
-            auto = true;
-            auto1();
+            if (guild_id.Text.Length<=1) { MessageBox.Show("请填写工会ID");return; }
+            if (auto)
+            {
+                auto = false;
+                button11.Text = "半自动操作";
+            }
+            else
+            {
+                auto = true;
+                button11.Text = "停止";
+                auto1();
+            }
+            
         }
 
         //get请求登陆页并加载验证码
@@ -461,7 +476,7 @@ namespace Black_Desert
 
 
             //调试打印返回内容
-            //rwtxt(content, "getLogin.html");
+            rwtxt(content, "getLogin.html");
 
             listBox1.Items.Add("验证码已加载");
             listBox1.SelectedIndex = listBox1.Items.Count - 1;
@@ -481,8 +496,10 @@ namespace Black_Desert
             //content = this.SendDataByPost("https://sso.woniu.com/login_embedded?service=http%3A%2F%2Fgwact.woniu.com%2Fpassport%2Fssologin%3Fgoto%3Dhttp%3A%2F%2Fwww.woniu.com%2Faccount%2FssoLoginSuccess.html&regurl=http%3A%2F%2Fwww.woniu.com%2Faccount%2Fregister%2F%3Fgameid%3D105%26pagename%3Dhttp%3A%2F%2Fbd.woniu.com%26goto%3Dhttp%3A%2F%2Fbd.woniu.com%2Fguild%2F", "username=pv57115&password=aa130520&captcha=" + this.code.Text+ tmpurl, ref cc);
             content = this.SendDataByPost("https://sso.woniu.com/login_embedded?service=http://gwact.woniu.com/passport/ssologin?goto=http://www.woniu.com/account/ssoLoginSuccess.html&regurl=http://www.woniu.com/account/register/?gameid=105&pagename=http://bd.woniu.com&goto=http://bd.woniu.com/static/guild/index.html", "username="+inputusername.Text+"&password="+inputpassword.Text+"&captcha=" + this.code.Text + tmpurl, ref cc);
 
-            //string RegexStr = @"请输入验证码";
-            //var c = Regex.IsMatch(content, "请输入验证呵呵呵呵呵");
+
+            //调试打印返回内容
+            rwtxt(content, "postLogin.html");
+
             if (Regex.Matches(content, "请输入验证码").Count >= 2)
             {
                 if (auto)
@@ -499,7 +516,8 @@ namespace Black_Desert
             {
                 if (auto)
                 {
-                    dataGridView1.Rows[Convert.ToInt32(numericUpDown1.Value - 2)].Cells[3].Value = "2";
+                    //if(Select)
+                        dataGridView1.Rows[Convert.ToInt32(numericUpDown1.Value + accSelectNo - 1)].Cells[3].Value = "2";
                 }
                 listBox1.Items.Add("您输入的验证码错误");
                 //重新加载验证码
@@ -512,7 +530,7 @@ namespace Black_Desert
                 {
                     dataGridView1.Rows[Convert.ToInt32(numericUpDown1.Value + accSelectNo-1)].Cells[3].Value = "1";
                 }
-                listBox1.Items.Add("账号登陆成功");
+                listBox1.Items.Add(inputusername.Text+":账号登陆成功");
             }
             else if (Regex.IsMatch(content, "您输入的帐号或密码不正确"))
             {
@@ -532,6 +550,26 @@ namespace Black_Desert
                 listBox1.Items.Add("您输入的帐号不存在");
                 return false;
             }
+            else if (Regex.IsMatch(content, "您输入的帐号不存在"))
+            {
+                if (auto)
+                {
+                    dataGridView1.Rows[Convert.ToInt32(numericUpDown1.Value + accSelectNo - 1)].Cells[3].Value = "5";
+                }
+                listBox1.Items.Add("您输入的帐号不存在");
+                return false;
+            }else if (Regex.IsMatch(content, "为了您账号安全，请前往蜗牛盾内确认本次登录。"))
+            {
+                listBox1.Items.Add("暂不支持开启蜗牛盾账号！");
+
+                if (auto)
+                {
+                    dataGridView1.Rows[Convert.ToInt32(numericUpDown1.Value + accSelectNo - 1)].Cells[3].Value = "6";
+                    return true;
+                }
+                
+                return false;
+            }
             else
             {
                 if (auto)
@@ -542,8 +580,6 @@ namespace Black_Desert
                 return false;
             }
 
-            //调试打印返回内容
-            rwtxt(content, "postLogin.html");
 
             //清空附加url参数
             tmpurl = "";
@@ -555,9 +591,9 @@ namespace Black_Desert
             string Regexstr = @"href\s*=\s*\""(?<url>[\w:/?=.&-_]*)";
 
             Match Url = Regex.Match(Urlcontent, Regexstr);
-
-            listBox1.Items.Add("返回URL：" + Url.Groups[1].ToString());
-
+            if (debug) { 
+                listBox1.Items.Add("返回URL：" + Url.Groups[1].ToString());
+            }
             rwtxt(content, "post2Login.html");
 
             //三次请求二次返回的url地址GET
@@ -586,13 +622,13 @@ namespace Black_Desert
             string RegexStr = @"[\\\w*]+";
 
             MatchCollection sss = Regex.Matches(content, RegexStr);
-            if (sss[1].ToString() != "1")
+            if (sss[2].ToString() != "1")
             {
                 if (auto)
                 {
                     dataGridView1.Rows[Convert.ToInt32(numericUpDown1.Value + accSelectNo - 1)].Cells[4].Value = Decode(sss[4].ToString());
                 }
-                listBox1.Items.Add("错误代码:" + sss[2] + "    返回信息:" + Decode(sss[4].ToString()));
+                listBox1.Items.Add("昵称绑定失败:" + sss[2] + "    错误信息:" + Decode(sss[4].ToString()));
             }
             else
             {
@@ -600,7 +636,7 @@ namespace Black_Desert
                 {
                     dataGridView1.Rows[Convert.ToInt32(numericUpDown1.Value + accSelectNo - 1)].Cells[4].Value = "1";
                 }
-                listBox1.Items.Add("操作成功:" + sss[2] + "    返回信息:" + Decode(sss[4].ToString()));
+                listBox1.Items.Add("昵称绑定成功:" + sss[2] + "    返回信息:" + Decode(sss[4].ToString()));
             }
             listBox1.SelectedIndex = listBox1.Items.Count - 1;
         }
@@ -625,7 +661,7 @@ namespace Black_Desert
                 {
                     dataGridView1.Rows[Convert.ToInt32(numericUpDown1.Value + accSelectNo - 1)].Cells[4].Value = "2";
                 }
-                listBox1.Items.Add("错误代码:" + sss[1] + "    返回信息:" + Decode(sss[3].ToString()));
+                listBox1.Items.Add("入会失败:" + sss[1] + "    错误信息:" + Decode(sss[3].ToString()));
             }
             else
             {
@@ -633,7 +669,7 @@ namespace Black_Desert
                 {
                     dataGridView1.Rows[Convert.ToInt32(numericUpDown1.Value + accSelectNo - 1)].Cells[4].Value = "1";
                 }
-                listBox1.Items.Add("操作成功:" + sss[1] + "    返回信息:" + Decode(sss[3].ToString()));
+                listBox1.Items.Add("入会提交:" + sss[1] + "    返回信息:" + Decode(sss[3].ToString()));
             }
             listBox1.SelectedIndex = listBox1.Items.Count - 1;
         }
@@ -656,7 +692,7 @@ namespace Black_Desert
                 {
                     dataGridView1.Rows[Convert.ToInt32(numericUpDown1.Value + accSelectNo - 1)].Cells[5].Value = "2";
                 }
-                listBox1.Items.Add("错误代码:" + sss[1] + "    返回信息:" + Decode(sss[3].ToString()));
+                listBox1.Items.Add("签到失败:" + sss[1] + "    返回信息:" + Decode(sss[3].ToString()));
             }
             else
             {
@@ -664,7 +700,7 @@ namespace Black_Desert
                 {
                     dataGridView1.Rows[Convert.ToInt32(numericUpDown1.Value + accSelectNo - 1)].Cells[5].Value = "1";
                 }
-                listBox1.Items.Add("操作成功:" + sss[1] + "    返回信息:" + Decode(sss[3].ToString()));
+                listBox1.Items.Add("签到成功:" + sss[1] + "    返回信息:" + Decode(sss[3].ToString()));
             }
             listBox1.SelectedIndex = listBox1.Items.Count - 1;
 
@@ -717,7 +753,13 @@ namespace Black_Desert
 
             if (dataGridView1.Rows.Count - 1 > select) {
                 dataGridView1.Rows[Convert.ToInt32(select)].Selected = true;
-                nickname.Text = inputusername.Text = (dataGridView1.Rows[Convert.ToInt32( select)].Cells[1].Value).ToString();
+                inputusername.Text = (dataGridView1.Rows[Convert.ToInt32( select)].Cells[1].Value).ToString();
+                string nicknamecc =  prefixNickName.Text + inputusername.Text;
+                if (nicknamecc.Length > 8)
+                {
+                    nicknamecc = nicknamecc.Substring(0, 7);
+                }
+                nickname.Text = nicknamecc;
                 inputpassword.Text = (dataGridView1.Rows[Convert.ToInt32(select)].Cells[2].Value).ToString();
 
                 //加载验证码
@@ -738,16 +780,22 @@ namespace Black_Desert
 
             if (Login())
             {
-                //入会
-                if (radioButton1.Checked) { ruhui(); }
-                //签到
-                if (radioButton2.Checked) { qiandao(); };
-                //仅登陆
-                if (radioButton3.Checked) { };
-                //绑定昵称
+                //1绑定昵称
                 if (checkBoxNickName.Checked) { bindnickname(); }
+                //2入会
+                if (checkBoxruhui.Checked) { ruhui(); }
+                //3签到
+                if (checkBoxqiandao.Checked) { qiandao(); };
+                //仅登陆
+                //if (radioButton3.Checked) { };
+                
+
+
                 //清空cookie
                 cc = new CookieContainer();
+                listBox1.Items.Add(inputusername.Text + "：已关闭");
+
+
                 //todo 读取参数，账号列表及当前序号
                 decimal select = numericUpDown1.Value + accSelectNo - 1;
                 dataGridView1.Rows[Convert.ToInt32(select)].Selected = false;
@@ -758,7 +806,7 @@ namespace Black_Desert
             {
                 //验证码等错误
                 //等待重新输入
-
+                LoadCode();
 
 
             }
@@ -780,6 +828,7 @@ namespace Black_Desert
 
         private void button12_Click(object sender, EventArgs e)
         {
+            accSelectNo++;
             auto1();
         }
 
@@ -795,6 +844,23 @@ namespace Black_Desert
             {
                 f.Focus();   //打开过就让其获得焦点  
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            cc = new CookieContainer();
+            if (inputusername.TextLength >= 1) { listBox1.Items.Add(inputusername.Text + ":已退出"); }
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            accSelectNo--;
+            auto1();
         }
     }
 

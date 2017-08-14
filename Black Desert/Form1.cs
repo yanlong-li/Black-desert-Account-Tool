@@ -777,7 +777,16 @@ namespace Black_Desert
                 //半自动关闭
                 if (!auto)
                 {
-                    Login();
+                    if (checkBoxAutoDama2.Checked)
+                    {
+                        listBox1.Items.Add("当前已开启自动打码，手动打码无效");
+                    }
+                    else
+                    {
+                        Login();
+
+                    }
+                   
                 }
                 else
                 {
@@ -795,7 +804,7 @@ namespace Black_Desert
         private void auto1()
         {
 
-            if (!auto || (numericUpDown3.Value != 0 && accSelectNo>= numericUpDown3.Value)) {
+            if (!auto || (numericUpDown3.Value != 0 && accSelectNo>= numericUpDown3.Value) || accSelectNo+numericUpDown1.Value>numericUpDown2.Value) {
                 accSelectNo = 0;
                 auto = false;
                 listBox1.Items.Add("自动执行结束");
@@ -807,6 +816,7 @@ namespace Black_Desert
 
             if (dataGridView1.Rows.Count - 1 > select) {
                 dataGridView1.Rows[Convert.ToInt32(select)].Selected = true;
+                label17.Text = (dataGridView1.Rows[Convert.ToInt32(select)].Cells[0].Value).ToString();
                 inputusername.Text = (dataGridView1.Rows[Convert.ToInt32( select)].Cells[1].Value).ToString();
                 string nicknamecc =  prefixNickName.Text + inputusername.Text;
                 if (nicknamecc.Length > 8)
@@ -842,7 +852,12 @@ namespace Black_Desert
                     }
                     else
                     {
-                        listBox1.Items.Add("识别验证码失败,请手动输入");
+                        listBox1.Items.Add("识别验证码失败,正在重试");
+                        var task1 = new Task(() =>
+                        {
+                            auto1();
+                        });
+                        task1.Start();
                     }
                 }
 
@@ -956,8 +971,6 @@ namespace Black_Desert
 
         private void Form1_Deactivate(object sender, EventArgs e)
         {
-            Dama2.Logoff();
-            Dama2.Uninit();
         }
 
         private void button16_Click(object sender, EventArgs e)

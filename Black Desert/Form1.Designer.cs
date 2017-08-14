@@ -94,6 +94,7 @@
             this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
@@ -567,6 +568,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label17);
             this.groupBox1.Controls.Add(this.button14);
             this.groupBox1.Controls.Add(this.inputusername);
             this.groupBox1.Controls.Add(this.inputpassword);
@@ -730,6 +732,14 @@
             this.label16.TabIndex = 57;
             this.label16.Text = "秒";
             // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(95, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(0, 12);
+            this.label17.TabIndex = 58;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -862,6 +872,7 @@
         private System.Windows.Forms.NumericUpDown numericUpDown4;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
     }
 }
 

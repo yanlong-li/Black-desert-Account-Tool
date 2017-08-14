@@ -607,7 +607,6 @@
             this.dama2UsernameInput.Name = "dama2UsernameInput";
             this.dama2UsernameInput.Size = new System.Drawing.Size(134, 21);
             this.dama2UsernameInput.TabIndex = 45;
-            this.dama2UsernameInput.Text = "test";
             // 
             // dama2PasswordInput
             // 
@@ -615,7 +614,6 @@
             this.dama2PasswordInput.Name = "dama2PasswordInput";
             this.dama2PasswordInput.Size = new System.Drawing.Size(134, 21);
             this.dama2PasswordInput.TabIndex = 50;
-            this.dama2PasswordInput.Text = "test";
             // 
             // groupBox2
             // 

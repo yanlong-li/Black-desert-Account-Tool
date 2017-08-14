@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("Black Desert")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("黑色沙漠一键签到工具")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Yanlongli")]
 [assembly: AssemblyProduct("Black Desert")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]

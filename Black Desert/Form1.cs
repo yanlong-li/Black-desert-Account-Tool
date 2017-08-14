@@ -804,7 +804,7 @@ namespace Black_Desert
         private void auto1()
         {
 
-            if (!auto || (numericUpDown3.Value != 0 && accSelectNo>= numericUpDown3.Value) || accSelectNo+numericUpDown1.Value>numericUpDown2.Value) {
+            if (!auto || (numericUpDown3.Value != 0 && accSelectNo>= numericUpDown3.Value) || (numericUpDown2.Value!=0 && accSelectNo + numericUpDown1.Value>numericUpDown2.Value)) {
                 accSelectNo = 0;
                 auto = false;
                 button11.Text = "自动操作";

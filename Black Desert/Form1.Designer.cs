@@ -82,12 +82,26 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button14 = new System.Windows.Forms.Button();
             this.button15 = new System.Windows.Forms.Button();
+            this.dama2UsernameInput = new System.Windows.Forms.TextBox();
+            this.dama2PasswordInput = new System.Windows.Forms.TextBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.checkBoxAutoDama2 = new System.Windows.Forms.CheckBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.button16 = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
+            this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -339,7 +353,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(1119, 107);
+            this.button6.Location = new System.Drawing.Point(1189, 41);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(75, 23);
             this.button6.TabIndex = 22;
@@ -366,7 +380,7 @@
             // 
             // AddressbarGet
             // 
-            this.AddressbarGet.Location = new System.Drawing.Point(1119, 138);
+            this.AddressbarGet.Location = new System.Drawing.Point(1189, 72);
             this.AddressbarGet.Name = "AddressbarGet";
             this.AddressbarGet.Size = new System.Drawing.Size(75, 23);
             this.AddressbarGet.TabIndex = 25;
@@ -461,7 +475,7 @@
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(118, 60);
             this.button11.TabIndex = 38;
-            this.button11.Text = "半自动操作";
+            this.button11.Text = "自动操作";
             this.button11.UseVisualStyleBackColor = true;
             this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
@@ -518,7 +532,7 @@
             // 
             // button13
             // 
-            this.button13.Location = new System.Drawing.Point(1119, 76);
+            this.button13.Location = new System.Drawing.Point(1189, 10);
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(75, 23);
             this.button13.TabIndex = 45;
@@ -561,7 +575,7 @@
             this.groupBox1.Controls.Add(this.button4);
             this.groupBox1.Location = new System.Drawing.Point(505, 165);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(648, 113);
+            this.groupBox1.Size = new System.Drawing.Size(441, 113);
             this.groupBox1.TabIndex = 48;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "手动区域";
@@ -587,11 +601,142 @@
             this.button15.UseVisualStyleBackColor = true;
             this.button15.Click += new System.EventHandler(this.button15_Click);
             // 
+            // dama2UsernameInput
+            // 
+            this.dama2UsernameInput.Location = new System.Drawing.Point(81, 30);
+            this.dama2UsernameInput.Name = "dama2UsernameInput";
+            this.dama2UsernameInput.Size = new System.Drawing.Size(134, 21);
+            this.dama2UsernameInput.TabIndex = 45;
+            this.dama2UsernameInput.Text = "test";
+            // 
+            // dama2PasswordInput
+            // 
+            this.dama2PasswordInput.Location = new System.Drawing.Point(81, 57);
+            this.dama2PasswordInput.Name = "dama2PasswordInput";
+            this.dama2PasswordInput.Size = new System.Drawing.Size(134, 21);
+            this.dama2PasswordInput.TabIndex = 50;
+            this.dama2PasswordInput.Text = "test";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label14);
+            this.groupBox2.Controls.Add(this.button16);
+            this.groupBox2.Controls.Add(this.label13);
+            this.groupBox2.Controls.Add(this.label12);
+            this.groupBox2.Controls.Add(this.linkLabel1);
+            this.groupBox2.Controls.Add(this.dama2UsernameInput);
+            this.groupBox2.Controls.Add(this.dama2PasswordInput);
+            this.groupBox2.Location = new System.Drawing.Point(961, 172);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(303, 100);
+            this.groupBox2.TabIndex = 53;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "打码兔";
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.LinkColor = System.Drawing.Color.Red;
+            this.linkLabel1.Location = new System.Drawing.Point(108, 13);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(65, 12);
+            this.linkLabel1.TabIndex = 55;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "注册打码兔";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
+            // checkBoxAutoDama2
+            // 
+            this.checkBoxAutoDama2.AutoSize = true;
+            this.checkBoxAutoDama2.Location = new System.Drawing.Point(769, 107);
+            this.checkBoxAutoDama2.Name = "checkBoxAutoDama2";
+            this.checkBoxAutoDama2.Size = new System.Drawing.Size(72, 16);
+            this.checkBoxAutoDama2.TabIndex = 54;
+            this.checkBoxAutoDama2.Text = "自动打码";
+            this.checkBoxAutoDama2.UseVisualStyleBackColor = true;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(15, 33);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(41, 12);
+            this.label12.TabIndex = 55;
+            this.label12.Text = "账号：";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(15, 61);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(41, 12);
+            this.label13.TabIndex = 56;
+            this.label13.Text = "密码：";
+            // 
+            // button16
+            // 
+            this.button16.Location = new System.Drawing.Point(222, 27);
+            this.button16.Name = "button16";
+            this.button16.Size = new System.Drawing.Size(75, 23);
+            this.button16.TabIndex = 55;
+            this.button16.Text = "查余额";
+            this.button16.UseVisualStyleBackColor = true;
+            this.button16.Click += new System.EventHandler(this.button16_Click);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(226, 61);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(17, 12);
+            this.label14.TabIndex = 55;
+            this.label14.Text = "--";
+            // 
+            // numericUpDown4
+            // 
+            this.numericUpDown4.Location = new System.Drawing.Point(1090, 51);
+            this.numericUpDown4.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numericUpDown4.Name = "numericUpDown4";
+            this.numericUpDown4.Size = new System.Drawing.Size(61, 21);
+            this.numericUpDown4.TabIndex = 55;
+            this.numericUpDown4.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(1055, 54);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(29, 12);
+            this.label15.TabIndex = 56;
+            this.label15.Text = "延迟";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(1157, 53);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(17, 12);
+            this.label16.TabIndex = 57;
+            this.label16.Text = "秒";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1276, 624);
+            this.Controls.Add(this.label16);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.numericUpDown4);
+            this.Controls.Add(this.checkBoxAutoDama2);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.button15);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.checkBoxqiandao);
@@ -630,6 +775,7 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "黑色沙漠批量小号申请加入公会 By Yanlongli";
+            this.Deactivate += new System.EventHandler(this.Form1_Deactivate);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
@@ -638,6 +784,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -698,6 +847,18 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.Button button15;
+        private System.Windows.Forms.TextBox dama2UsernameInput;
+        private System.Windows.Forms.TextBox dama2PasswordInput;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.CheckBox checkBoxAutoDama2;
+        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Button button16;
+        private System.Windows.Forms.NumericUpDown numericUpDown4;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
     }
 }
 

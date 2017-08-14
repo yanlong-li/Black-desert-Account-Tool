@@ -8,6 +8,9 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Web;
 using System.Globalization;
+using Dama2Lib;
+using System.Drawing.Imaging;
+using System.Threading.Tasks;
 
 namespace Black_Desert
 {
@@ -35,6 +38,19 @@ namespace Black_Desert
         //半自动状态
         private bool auto = false;
 
+
+        //dama2
+        //private uint ulRequestID = 0;
+        private uint ulVCodeID = 0;
+
+        private String m_softKey = "a355b6d8f99298dad0371fd341a2584a";
+
+
+
+
+
+
+
         public Form1()
         {
             InitializeComponent();
@@ -42,9 +58,7 @@ namespace Black_Desert
             listBox1.Items.Add(startopentext.ToString());
             listBox1.Items.Add("请选择账号文件");
             listBox1.SelectedIndex = listBox1.Items.Count - 1;
-
-            //Form form2 = new Form2();
-            //form2.Show();
+            CheckForIllegalCrossThreadCalls = false;
         }
 
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
@@ -56,9 +70,10 @@ namespace Black_Desert
         {
             OpenFileDialog openFileDialog = this.openFileDialog1;
             openFileDialog.InitialDirectory = Application.StartupPath;
-            
+            //openFileDialog.ShowDialog();
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
+                //return;
                 listBox1.Items.Add(DateTime.Now.ToString());
                 listBox1.Items.Add("已选择账号档案正在加载。。。。。。");
                 listBox1.Items.Add("档案地址："+fName);
@@ -66,7 +81,7 @@ namespace Black_Desert
                 listBox1.Items.Add("加载成功正在分析。。。。。。");
                 fName = openFileDialog.FileName.ToString();
                 txtSelect.Text = fName;
-                this.openFile(fName);
+                openFile(fName);
             }
             else {
                 listBox1.Items.Add(DateTime.Now.ToString());
@@ -104,6 +119,7 @@ namespace Black_Desert
             listBox1.Items.Add("分析完成，共载入" + (dataGridView1.RowCount-1) + "个账号,耗时："+ openHS.Seconds+"秒。");
             #endregion
             listBox1.SelectedIndex = listBox1.Items.Count - 1;
+
         }
         //清空账号
         private void button2_Click(object sender, EventArgs e)
@@ -361,6 +377,38 @@ namespace Black_Desert
             }
         }
 
+        public byte[] ImageToBytes(Image image)
+        {
+            ImageFormat format = image.RawFormat;
+            using (MemoryStream ms = new MemoryStream())
+            {
+                if (format.Equals(ImageFormat.Jpeg))
+                {
+                    image.Save(ms, ImageFormat.Jpeg);
+                }
+                else if (format.Equals(ImageFormat.Png))
+                {
+                    image.Save(ms, ImageFormat.Png);
+                }
+                else if (format.Equals(ImageFormat.Bmp))
+                {
+                    image.Save(ms, ImageFormat.Bmp);
+                }
+                else if (format.Equals(ImageFormat.Gif))
+                {
+                    image.Save(ms, ImageFormat.Gif);
+                }
+                else if (format.Equals(ImageFormat.Icon))
+                {
+                    image.Save(ms, ImageFormat.Icon);
+                }
+                byte[] buffer = new byte[ms.Length];
+                //Image.Save()会改变MemoryStream的Position，需要重新Seek到Begin
+                ms.Seek(0, SeekOrigin.Begin);
+                ms.Read(buffer, 0, buffer.Length);
+                return buffer;
+            }
+        }
 
         private void label6_Click(object sender, EventArgs e)
         {
@@ -445,16 +493,22 @@ namespace Black_Desert
         private void button11_Click(object sender, EventArgs e)
         {
             if (guild_id.Text.Length<=1) { MessageBox.Show("请填写工会ID");return; }
+            accSelectNo = 0;
             if (auto)
             {
                 auto = false;
-                button11.Text = "半自动操作";
+                button11.Text = "自动操作";
             }
             else
             {
                 auto = true;
                 button11.Text = "停止";
-                auto1();
+                var task1 = new Task(() =>
+                {
+                    auto1();
+                });
+                task1.Start();
+                //task1.e
             }
             
         }
@@ -473,7 +527,6 @@ namespace Black_Desert
             content = SendDataByGET("https://sso.woniu.com/login", "", ref cc);
             //加载验证码
             pictureBox1.Image = getImg("https://sso.woniu.com/captcha", "", ref cc);
-
 
             //调试打印返回内容
             rwtxt(content, "getLogin.html");
@@ -516,12 +569,13 @@ namespace Black_Desert
             {
                 if (auto)
                 {
-                    //if(Select)
                         dataGridView1.Rows[Convert.ToInt32(numericUpDown1.Value + accSelectNo - 1)].Cells[3].Value = "2";
+                        Dama2.ReportResult(ulVCodeID,0);
                 }
                 listBox1.Items.Add("您输入的验证码错误");
                 //重新加载验证码
-                pictureBox1.Image = getImg("https://sso.woniu.com/captcha", "", ref cc);
+                //pictureBox1.Image = getImg("https://sso.woniu.com/captcha", "", ref cc);
+                auto1();
                 return false;
             }
             else if (Regex.IsMatch(content, "登录成功") || Regex.IsMatch(content, "您已经成功登录中央认证系统"))
@@ -741,10 +795,10 @@ namespace Black_Desert
         private void auto1()
         {
 
-            if (!auto) {
-                 accSelectNo = 0;
+            if (!auto || (numericUpDown3.Value != 0 && accSelectNo>= numericUpDown3.Value)) {
+                accSelectNo = 0;
                 auto = false;
-                listBox1.Items.Add("半自动执行结束");
+                listBox1.Items.Add("自动执行结束");
                 return;
             }
 
@@ -761,9 +815,37 @@ namespace Black_Desert
                 }
                 nickname.Text = nicknamecc;
                 inputpassword.Text = (dataGridView1.Rows[Convert.ToInt32(select)].Cells[2].Value).ToString();
-
                 //加载验证码
                 LoadCode();
+
+                if (checkBoxAutoDama2.Visible == true && checkBoxAutoDama2.Checked == true)
+                {
+                    //请求答题
+                    byte[] pImageData = ImageToBytes(pictureBox1.Image);
+
+                    StringBuilder VCodeText = new StringBuilder(100);
+
+                    int ret = Dama2.D2Buf(m_softKey,dama2UsernameInput.Text,dama2PasswordInput.Text,pImageData, (uint)pImageData.Length, 120, 42, VCodeText);
+                    if (ret > 0)
+                    {
+                        code.Text = VCodeText.ToString();
+                        //写入该验证码ID；
+                        ulVCodeID = (uint)ret;
+                        auto2();
+                    }
+                    else if(ret == -101)
+                    {
+                        listBox1.Items.Add("打码兔余额不足");
+                    }else if(ret == -206)
+                    {
+                        listBox1.Items.Add("请点击“重载打码兔”后登陆打码兔");
+                    }
+                    else
+                    {
+                        listBox1.Items.Add("识别验证码失败,请手动输入");
+                    }
+                }
+
             }
             else
             {
@@ -777,6 +859,7 @@ namespace Black_Desert
         {
             //如果已终止
             if (!auto) { return; }
+
 
             if (Login())
             {
@@ -800,6 +883,9 @@ namespace Black_Desert
                 decimal select = numericUpDown1.Value + accSelectNo - 1;
                 dataGridView1.Rows[Convert.ToInt32(select)].Selected = false;
                 accSelectNo++;
+                if (numericUpDown4.Value > 0) { 
+                    System.Threading.Thread.Sleep((int)numericUpDown4.Value*1000);
+                }
                 auto1();
             }
             else
@@ -861,6 +947,31 @@ namespace Black_Desert
         {
             accSelectNo--;
             auto1();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start( "http://www.dama2.com/index/ureg?tj=1982740&vali=9f808161627a93b5d658ed3c04c9e242");
+        }
+
+        private void Form1_Deactivate(object sender, EventArgs e)
+        {
+            Dama2.Logoff();
+            Dama2.Uninit();
+        }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+            uint pulBalance = 0;
+            int ret = Dama2.D2Balance(m_softKey, dama2UsernameInput.Text, dama2PasswordInput.Text, ref pulBalance);
+            if (ret == 0)
+            {
+                label14.Text = pulBalance.ToString();
+            }
+            else
+            {
+                label14.Text = "查询失败";
+            }
         }
     }
 

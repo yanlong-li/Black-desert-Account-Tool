@@ -807,6 +807,7 @@ namespace Black_Desert
             if (!auto || (numericUpDown3.Value != 0 && accSelectNo>= numericUpDown3.Value) || accSelectNo+numericUpDown1.Value>numericUpDown2.Value) {
                 accSelectNo = 0;
                 auto = false;
+                button11.Text = "自动操作";
                 listBox1.Items.Add("自动执行结束");
                 return;
             }

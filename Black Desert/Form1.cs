@@ -11,6 +11,7 @@ using System.Globalization;
 using Dama2Lib;
 using System.Drawing.Imaging;
 using System.Threading.Tasks;
+using Noesis.Javascript;
 
 namespace Black_Desert
 {
@@ -525,14 +526,72 @@ namespace Black_Desert
 
             //获取get返回内容
             content = SendDataByGET("https://sso.woniu.com/login", "", ref cc);
-            //加载验证码
-            pictureBox1.Image = getImg("https://sso.woniu.com/captcha", "", ref cc);
+            ////加载验证码
+            //pictureBox1.Image = getImg("https://sso.woniu.com/captcha", "", ref cc);
+
+             string captchajs = SendDataByGET("https://www3.woniu.com/cloud/captcha/captcha.js","",ref cc);
 
             //调试打印返回内容
             rwtxt(content, "getLogin.html");
 
+            //todo 从内容中获取验证码 KEY
+
+            string key = "";
+
+            //定义正则表达式规则
+            Regex reg = new Regex(@"\w{32}");
+            key = reg.Match(content).ToString();
+            listBox1.Items.Add(key);
+
             listBox1.Items.Add("验证码已加载");
             listBox1.SelectedIndex = listBox1.Items.Count - 1;
+        }
+
+        private void LoadCode2()
+        {
+
+        }
+
+        public class SystemConsole
+        {
+            public SystemConsole() { }
+
+            public void Print(string iString)
+            {
+                Console.WriteLine(iString);
+            }
+        }
+
+        /// <summary>
+        /// 执行JS
+        /// </summary>
+        /// <param name="sExpression">参数体</param>
+        /// <param name="sCode">JavaScript代码的字符串</param>
+        /// <returns></returns>
+        private string ExecuteScript(string sExpression, string script)
+         {
+            // Initialize a context
+            using (JavascriptContext context = new JavascriptContext())
+            {
+
+                // Setting external parameters for the context
+                context.SetParameter("console", new SystemConsole());
+                context.SetParameter("message", "Hello World !");
+                context.SetParameter("number", 1);
+
+                // Script
+    //            script = @"
+    
+    //";
+                //script = script.Replace("\u0065\u0076\u0061\u006c", "a=");
+
+                // Running the script
+                context.Run(script);
+
+                // Getting a parameter
+                Console.WriteLine("number: " + context.GetParameter("number"));
+            }
+            return null;
         }
 
 
